@@ -1,0 +1,984 @@
+Analysis & Synthesis report for IITB_RISC
+Sat May 07 18:18:00 2022
+Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |IITB_RISC|control_path:control|Q
+  9. State Machine - |IITB_RISC|data_path:data|bootload:bootload_instance|control_bootload:cp|Q
+ 10. State Machine - |IITB_RISC|data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|control_path_receive:c|Q
+ 11. Registers Removed During Synthesis
+ 12. General Register Statistics
+ 13. Inverted Register Statistics
+ 14. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 15. Parameter Settings for User Entity Instance: data_path:data|bootload:bootload_instance|data_bootload:dp|my_reg:addr
+ 16. Parameter Settings for User Entity Instance: data_path:data|bootload:bootload_instance|data_bootload:dp|my_reg:dat
+ 17. Parameter Settings for User Entity Instance: data_path:data|bootload:bootload_instance|data_bootload:dp|my_reg:count
+ 18. Parameter Settings for User Entity Instance: data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|data_path_receive:d|my_reg:rx_reg
+ 19. Parameter Settings for User Entity Instance: data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|data_path_receive:d|my_reg:data_reg
+ 20. Parameter Settings for User Entity Instance: data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|data_path_receive:d|my_reg:cnt1_reg
+ 21. Parameter Settings for User Entity Instance: data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|data_path_receive:d|my_reg:cnt2_reg
+ 22. Parameter Settings for User Entity Instance: data_path:data|my_reg:instruction_register
+ 23. Parameter Settings for User Entity Instance: data_path:data|register_file:rf|my_reg:\GEN_REG:0:REG
+ 24. Parameter Settings for User Entity Instance: data_path:data|register_file:rf|my_reg:\GEN_REG:1:REG
+ 25. Parameter Settings for User Entity Instance: data_path:data|register_file:rf|my_reg:\GEN_REG:2:REG
+ 26. Parameter Settings for User Entity Instance: data_path:data|register_file:rf|my_reg:\GEN_REG:3:REG
+ 27. Parameter Settings for User Entity Instance: data_path:data|register_file:rf|my_reg:\GEN_REG:4:REG
+ 28. Parameter Settings for User Entity Instance: data_path:data|register_file:rf|my_reg:\GEN_REG:5:REG
+ 29. Parameter Settings for User Entity Instance: data_path:data|register_file:rf|my_reg:\GEN_REG:6:REG
+ 30. Parameter Settings for User Entity Instance: data_path:data|register_file:rf|my_reg:\GEN_REG:7:REG
+ 31. Parameter Settings for User Entity Instance: data_path:data|ls_multiple:pe_block|my_reg:T
+ 32. Parameter Settings for User Entity Instance: data_path:data|alu:alu_instance
+ 33. Parameter Settings for User Entity Instance: data_path:data|alu:alu_instance|adder:add1
+ 34. Parameter Settings for User Entity Instance: data_path:data|alu:alu_instance|adder:add1|carry_generate:\car_l:1:CARRYX
+ 35. Parameter Settings for User Entity Instance: data_path:data|alu:alu_instance|adder:add1|carry_generate:\car_l:2:CARRYX
+ 36. Parameter Settings for User Entity Instance: data_path:data|alu:alu_instance|adder:add1|carry_generate:\car_l:3:CARRYX
+ 37. Parameter Settings for User Entity Instance: data_path:data|alu:alu_instance|adder:add1|carry_generate:\car_l:4:CARRYX
+ 38. Parameter Settings for User Entity Instance: data_path:data|ram:mem
+ 39. Parameter Settings for User Entity Instance: data_path:data|my_reg:T1_Reg
+ 40. Parameter Settings for User Entity Instance: data_path:data|my_reg:T2_reg
+ 41. Parameter Settings for User Entity Instance: data_path:data|my_reg:Carry_CCR
+ 42. Parameter Settings for User Entity Instance: data_path:data|my_reg:Zero_CCR
+ 43. Parameter Settings for User Entity Instance: data_path:data|my_reg:Overflow_CCR
+ 44. Parameter Settings for User Entity Instance: data_path:data|my_reg:E1_reg
+ 45. Parameter Settings for User Entity Instance: data_path:data|my_reg:E2_reg
+ 46. Parameter Settings for User Entity Instance: data_path:data|my_reg:PC_reg
+ 47. Parameter Settings for User Entity Instance: data_path:data|my_reg:B_flop
+ 48. Port Connectivity Checks: "data_path:data|my_reg:E2_reg"
+ 49. Port Connectivity Checks: "data_path:data|my_reg:E1_reg"
+ 50. Port Connectivity Checks: "data_path:data|alu:alu_instance|adder:add1"
+ 51. Port Connectivity Checks: "data_path:data|alu:alu_instance"
+ 52. Port Connectivity Checks: "data_path:data|ls_multiple:pe_block"
+ 53. Port Connectivity Checks: "data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|data_path_receive:d|my_reg:rx_reg"
+ 54. Port Connectivity Checks: "data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception"
+ 55. Port Connectivity Checks: "data_path:data|bootload:bootload_instance"
+ 56. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2020  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++---------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                              ;
++-----------------------------+---------------------------------------------+
+; Analysis & Synthesis Status ; Successful - Sat May 07 18:18:00 2022       ;
+; Quartus Prime Version       ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
+; Revision Name               ; IITB_RISC                                   ;
+; Top-level Entity Name       ; IITB_RISC                                   ;
+; Family                      ; MAX V                                       ;
+; Total logic elements        ; 8,076                                       ;
+; Total pins                  ; 20                                          ;
+; Total virtual pins          ; 0                                           ;
+; UFM blocks                  ; 0 / 1 ( 0 % )                               ;
++-----------------------------+---------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                              ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                           ; Setting            ; Default Value      ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Top-level entity name                                            ; IITB_RISC          ; IITB_RISC          ;
+; Family name                                                      ; MAX V              ; Cyclone V          ;
+; Use smart compilation                                            ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                      ; Off                ; Off                ;
+; Restructure Multiplexers                                         ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                              ; Off                ; Off                ;
+; Preserve fewer node names                                        ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                    ; Enable             ; Enable             ;
+; Verilog Version                                                  ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                     ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                         ; Auto               ; Auto               ;
+; Safe State Machine                                               ; Off                ; Off                ;
+; Extract Verilog State Machines                                   ; On                 ; On                 ;
+; Extract VHDL State Machines                                      ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                       ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                   ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                          ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                        ; On                 ; On                 ;
+; Parallel Synthesis                                               ; On                 ; On                 ;
+; NOT Gate Push-Back                                               ; On                 ; On                 ;
+; Power-Up Don't Care                                              ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                     ; Off                ; Off                ;
+; Remove Duplicate Registers                                       ; On                 ; On                 ;
+; Ignore CARRY Buffers                                             ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                           ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                            ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                        ; Off                ; Off                ;
+; Ignore LCELL Buffers                                             ; Off                ; Off                ;
+; Ignore SOFT Buffers                                              ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                   ; Off                ; Off                ;
+; Optimization Technique                                           ; Balanced           ; Balanced           ;
+; Carry Chain Length                                               ; 70                 ; 70                 ;
+; Auto Carry Chains                                                ; On                 ; On                 ;
+; Auto Open-Drain Pins                                             ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                            ; Off                ; Off                ;
+; Auto Shift Register Replacement                                  ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                  ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                    ; On                 ; On                 ;
+; Allow Synchronous Control Signals                                ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                           ; Off                ; Off                ;
+; Auto Resource Sharing                                            ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing              ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                ; Off                ; Off                ;
+; Report Parameter Settings                                        ; On                 ; On                 ;
+; Report Source Assignments                                        ; On                 ; On                 ;
+; Report Connectivity Checks                                       ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                               ; Off                ; Off                ;
+; Synchronization Register Chain Length                            ; 2                  ; 2                  ;
+; Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                  ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report         ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report               ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report        ; 100                ; 100                ;
+; Clock MUX Protection                                             ; On                 ; On                 ;
+; Block Design Naming                                              ; Auto               ; Auto               ;
+; Synthesis Effort                                                 ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal     ; On                 ; On                 ;
+; Analysis & Synthesis Message Level                               ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                      ; Auto               ; Auto               ;
++------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 16          ;
+; Maximum allowed            ; 8           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                                                                           ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                                                                                                                    ; Library ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+; p_encoder_2.vhd                  ; yes             ; User VHDL File  ; C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/p_encoder_2.vhd       ;         ;
+; uart_receive.vhdl                ; yes             ; User VHDL File  ; C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/uart_receive.vhdl     ;         ;
+; sign_extend_9_16.vhdl            ; yes             ; User VHDL File  ; C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/sign_extend_9_16.vhdl ;         ;
+; sign_extend_6_16.vhdl            ; yes             ; User VHDL File  ; C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/sign_extend_6_16.vhdl ;         ;
+; register_file.vhdl               ; yes             ; User VHDL File  ; C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/register_file.vhdl    ;         ;
+; ram.vhdl                         ; yes             ; User VHDL File  ; C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/ram.vhdl              ;         ;
+; my_reg.vhdl                      ; yes             ; User VHDL File  ; C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/my_reg.vhdl           ;         ;
+; ls_multiple.vhdl                 ; yes             ; User VHDL File  ; C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/ls_multiple.vhdl      ;         ;
+; IITB_RISC.vhdl                   ; yes             ; User VHDL File  ; C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/IITB_RISC.vhdl        ;         ;
+; full_adder.vhdl                  ; yes             ; User VHDL File  ; C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/full_adder.vhdl       ;         ;
+; data_path.vhdl                   ; yes             ; User VHDL File  ; C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/data_path.vhdl        ;         ;
+; data_bootload.vhdl               ; yes             ; User VHDL File  ; C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/data_bootload.vhdl    ;         ;
+; control_path.vhdl                ; yes             ; User VHDL File  ; C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/control_path.vhdl     ;         ;
+; control_bootload.vhdl            ; yes             ; User VHDL File  ; C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/control_bootload.vhdl ;         ;
+; carry_generate.vhdl              ; yes             ; User VHDL File  ; C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/carry_generate.vhdl   ;         ;
+; bootload.vhdl                    ; yes             ; User VHDL File  ; C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/bootload.vhdl         ;         ;
+; basic.vhdl                       ; yes             ; User VHDL File  ; C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/basic.vhdl            ;         ;
+; alu.vhdl                         ; yes             ; User VHDL File  ; C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/alu.vhdl              ;         ;
+; adder.vhdl                       ; yes             ; User VHDL File  ; C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/adder.vhdl            ;         ;
+; add.vhdl                         ; yes             ; User VHDL File  ; C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/add.vhdl              ;         ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary         ;
++---------------------------------------------+-------+
+; Resource                                    ; Usage ;
++---------------------------------------------+-------+
+; Total logic elements                        ; 8076  ;
+;     -- Combinational with no register       ; 3642  ;
+;     -- Register only                        ; 4309  ;
+;     -- Combinational with a register        ; 125   ;
+;                                             ;       ;
+; Logic element usage by number of LUT inputs ;       ;
+;     -- 4 input functions                    ; 3308  ;
+;     -- 3 input functions                    ; 403   ;
+;     -- 2 input functions                    ; 50    ;
+;     -- 1 input functions                    ; 6     ;
+;     -- 0 input functions                    ; 0     ;
+;                                             ;       ;
+; Logic elements by mode                      ;       ;
+;     -- normal mode                          ; 8054  ;
+;     -- arithmetic mode                      ; 22    ;
+;     -- qfbk mode                            ; 0     ;
+;     -- register cascade mode                ; 0     ;
+;     -- synchronous clear/load mode          ; 53    ;
+;     -- asynchronous clear/load mode         ; 267   ;
+;                                             ;       ;
+; Total registers                             ; 4434  ;
+; Total logic cells in carry chains           ; 25    ;
+; I/O pins                                    ; 20    ;
+; Maximum fan-out node                        ; clk   ;
+; Maximum fan-out                             ; 4412  ;
+; Total fan-out                               ; 27999 ;
+; Average fan-out                             ; 3.46  ;
++---------------------------------------------+-------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                                                        ;
++----------------------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+----------------------------------------------------------------------------------------------------------------------------------+----------------------+--------------+
+; Compilation Hierarchy Node                   ; Logic Cells ; LC Registers ; UFM Blocks ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Packed LCs ; Full Hierarchy Name                                                                                                              ; Entity Name          ; Library Name ;
++----------------------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+----------------------------------------------------------------------------------------------------------------------------------+----------------------+--------------+
+; |IITB_RISC                                   ; 8076 (0)    ; 4434         ; 0          ; 20   ; 0            ; 3642 (0)     ; 4309 (0)          ; 125 (0)          ; 25 (0)          ; 0 (0)      ; |IITB_RISC                                                                                                                       ; IITB_RISC            ; work         ;
+;    |control_path:control|                    ; 85 (85)     ; 22           ; 0          ; 0    ; 0            ; 63 (63)      ; 2 (2)             ; 20 (20)          ; 0 (0)           ; 0 (0)      ; |IITB_RISC|control_path:control                                                                                                  ; control_path         ; work         ;
+;    |data_path:data|                          ; 7991 (231)  ; 4412         ; 0          ; 0    ; 0            ; 3579 (231)   ; 4307 (0)          ; 105 (0)          ; 25 (0)          ; 0 (0)      ; |IITB_RISC|data_path:data                                                                                                        ; data_path            ; work         ;
+;       |alu:alu_instance|                     ; 32 (17)     ; 0            ; 0          ; 0    ; 0            ; 32 (17)      ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|alu:alu_instance                                                                                       ; alu                  ; work         ;
+;          |adder:add1|                        ; 15 (0)      ; 0            ; 0          ; 0    ; 0            ; 15 (0)       ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|alu:alu_instance|adder:add1                                                                            ; adder                ; work         ;
+;             |carry_generate:\car_l:1:CARRYX| ; 3 (3)       ; 0            ; 0          ; 0    ; 0            ; 3 (3)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|alu:alu_instance|adder:add1|carry_generate:\car_l:1:CARRYX                                             ; carry_generate       ; work         ;
+;             |carry_generate:\car_l:2:CARRYX| ; 4 (4)       ; 0            ; 0          ; 0    ; 0            ; 4 (4)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|alu:alu_instance|adder:add1|carry_generate:\car_l:2:CARRYX                                             ; carry_generate       ; work         ;
+;             |carry_generate:\car_l:3:CARRYX| ; 4 (4)       ; 0            ; 0          ; 0    ; 0            ; 4 (4)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|alu:alu_instance|adder:add1|carry_generate:\car_l:3:CARRYX                                             ; carry_generate       ; work         ;
+;             |carry_generate:\car_l:4:CARRYX| ; 4 (4)       ; 0            ; 0          ; 0    ; 0            ; 4 (4)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|alu:alu_instance|adder:add1|carry_generate:\car_l:4:CARRYX                                             ; carry_generate       ; work         ;
+;       |bootload:bootload_instance|           ; 140 (0)     ; 73           ; 0          ; 0    ; 0            ; 67 (0)       ; 10 (0)            ; 63 (0)           ; 25 (0)          ; 0 (0)      ; |IITB_RISC|data_path:data|bootload:bootload_instance                                                                             ; bootload             ; work         ;
+;          |control_bootload:cp|               ; 19 (19)     ; 7            ; 0          ; 0    ; 0            ; 12 (12)      ; 0 (0)             ; 7 (7)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|bootload:bootload_instance|control_bootload:cp                                                         ; control_bootload     ; work         ;
+;          |data_bootload:dp|                  ; 121 (24)    ; 66           ; 0          ; 0    ; 0            ; 55 (23)      ; 10 (0)            ; 56 (1)           ; 25 (8)          ; 0 (0)      ; |IITB_RISC|data_path:data|bootload:bootload_instance|data_bootload:dp                                                            ; data_bootload        ; work         ;
+;             |my_reg:addr|                    ; 8 (8)       ; 8            ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 8 (8)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|bootload:bootload_instance|data_bootload:dp|my_reg:addr                                                ; my_reg               ; work         ;
+;             |my_reg:count|                   ; 8 (8)       ; 8            ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 8 (8)            ; 8 (8)           ; 0 (0)      ; |IITB_RISC|data_path:data|bootload:bootload_instance|data_bootload:dp|my_reg:count                                               ; my_reg               ; work         ;
+;             |my_reg:dat|                     ; 16 (16)     ; 16           ; 0          ; 0    ; 0            ; 0 (0)        ; 8 (8)             ; 8 (8)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|bootload:bootload_instance|data_bootload:dp|my_reg:dat                                                 ; my_reg               ; work         ;
+;             |uart_receive:reception|         ; 65 (24)     ; 33           ; 0          ; 0    ; 0            ; 32 (13)      ; 2 (0)             ; 31 (11)          ; 9 (9)           ; 0 (0)      ; |IITB_RISC|data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception                                     ; uart_receive         ; work         ;
+;                |control_path_receive:c|      ; 15 (15)     ; 4            ; 0          ; 0    ; 0            ; 11 (11)      ; 0 (0)             ; 4 (4)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|control_path_receive:c              ; control_path_receive ; work         ;
+;                |data_path_receive:d|         ; 26 (6)      ; 18           ; 0          ; 0    ; 0            ; 8 (6)        ; 2 (0)             ; 16 (0)           ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|data_path_receive:d                 ; data_path_receive    ; work         ;
+;                   |my_reg:cnt1_reg|          ; 4 (4)       ; 4            ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (4)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|data_path_receive:d|my_reg:cnt1_reg ; my_reg               ; work         ;
+;                   |my_reg:cnt2_reg|          ; 5 (5)       ; 3            ; 0          ; 0    ; 0            ; 2 (2)        ; 0 (0)             ; 3 (3)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|data_path_receive:d|my_reg:cnt2_reg ; my_reg               ; work         ;
+;                   |my_reg:data_reg|          ; 10 (10)     ; 10           ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 9 (9)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|data_path_receive:d|my_reg:data_reg ; my_reg               ; work         ;
+;                   |my_reg:rx_reg|            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|data_path_receive:d|my_reg:rx_reg   ; my_reg               ; work         ;
+;       |ls_multiple:pe_block|                 ; 25 (9)      ; 8            ; 0          ; 0    ; 0            ; 17 (9)       ; 0 (0)             ; 8 (0)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|ls_multiple:pe_block                                                                                   ; ls_multiple          ; work         ;
+;          |my_reg:T|                          ; 8 (8)       ; 8            ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 8 (8)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|ls_multiple:pe_block|my_reg:T                                                                          ; my_reg               ; work         ;
+;          |p_encoder_2:PE|                    ; 8 (8)       ; 0            ; 0          ; 0    ; 0            ; 8 (8)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|ls_multiple:pe_block|p_encoder_2:PE                                                                    ; p_encoder_2          ; work         ;
+;       |my_reg:B_flop|                        ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|my_reg:B_flop                                                                                          ; my_reg               ; work         ;
+;       |my_reg:Carry_CCR|                     ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 1 (1)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|my_reg:Carry_CCR                                                                                       ; my_reg               ; work         ;
+;       |my_reg:E1_reg|                        ; 16 (16)     ; 16           ; 0          ; 0    ; 0            ; 0 (0)        ; 16 (16)           ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|my_reg:E1_reg                                                                                          ; my_reg               ; work         ;
+;       |my_reg:E2_reg|                        ; 16 (16)     ; 16           ; 0          ; 0    ; 0            ; 0 (0)        ; 16 (16)           ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|my_reg:E2_reg                                                                                          ; my_reg               ; work         ;
+;       |my_reg:PC_reg|                        ; 16 (16)     ; 16           ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|my_reg:PC_reg                                                                                          ; my_reg               ; work         ;
+;       |my_reg:T1_Reg|                        ; 16 (16)     ; 16           ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 16 (16)          ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|my_reg:T1_Reg                                                                                          ; my_reg               ; work         ;
+;       |my_reg:T2_reg|                        ; 16 (16)     ; 16           ; 0          ; 0    ; 0            ; 0 (0)        ; 16 (16)           ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|my_reg:T2_reg                                                                                          ; my_reg               ; work         ;
+;       |my_reg:Zero_CCR|                      ; 8 (8)       ; 1            ; 0          ; 0    ; 0            ; 7 (7)        ; 0 (0)             ; 1 (1)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|my_reg:Zero_CCR                                                                                        ; my_reg               ; work         ;
+;       |my_reg:instruction_register|          ; 16 (16)     ; 16           ; 0          ; 0    ; 0            ; 0 (0)        ; 16 (16)           ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|my_reg:instruction_register                                                                            ; my_reg               ; work         ;
+;       |ram:mem|                              ; 7112 (7112) ; 4104         ; 0          ; 0    ; 0            ; 3008 (3008)  ; 4104 (4104)       ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|ram:mem                                                                                                ; ram                  ; work         ;
+;       |register_file:rf|                     ; 345 (217)   ; 128          ; 0          ; 0    ; 0            ; 217 (217)    ; 128 (0)           ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|register_file:rf                                                                                       ; register_file        ; work         ;
+;          |my_reg:\GEN_REG:0:REG|             ; 16 (16)     ; 16           ; 0          ; 0    ; 0            ; 0 (0)        ; 16 (16)           ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|register_file:rf|my_reg:\GEN_REG:0:REG                                                                 ; my_reg               ; work         ;
+;          |my_reg:\GEN_REG:1:REG|             ; 16 (16)     ; 16           ; 0          ; 0    ; 0            ; 0 (0)        ; 16 (16)           ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|register_file:rf|my_reg:\GEN_REG:1:REG                                                                 ; my_reg               ; work         ;
+;          |my_reg:\GEN_REG:2:REG|             ; 16 (16)     ; 16           ; 0          ; 0    ; 0            ; 0 (0)        ; 16 (16)           ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|register_file:rf|my_reg:\GEN_REG:2:REG                                                                 ; my_reg               ; work         ;
+;          |my_reg:\GEN_REG:3:REG|             ; 16 (16)     ; 16           ; 0          ; 0    ; 0            ; 0 (0)        ; 16 (16)           ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|register_file:rf|my_reg:\GEN_REG:3:REG                                                                 ; my_reg               ; work         ;
+;          |my_reg:\GEN_REG:4:REG|             ; 16 (16)     ; 16           ; 0          ; 0    ; 0            ; 0 (0)        ; 16 (16)           ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|register_file:rf|my_reg:\GEN_REG:4:REG                                                                 ; my_reg               ; work         ;
+;          |my_reg:\GEN_REG:5:REG|             ; 16 (16)     ; 16           ; 0          ; 0    ; 0            ; 0 (0)        ; 16 (16)           ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|register_file:rf|my_reg:\GEN_REG:5:REG                                                                 ; my_reg               ; work         ;
+;          |my_reg:\GEN_REG:6:REG|             ; 16 (16)     ; 16           ; 0          ; 0    ; 0            ; 0 (0)        ; 16 (16)           ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|register_file:rf|my_reg:\GEN_REG:6:REG                                                                 ; my_reg               ; work         ;
+;          |my_reg:\GEN_REG:7:REG|             ; 16 (16)     ; 16           ; 0          ; 0    ; 0            ; 0 (0)        ; 16 (16)           ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |IITB_RISC|data_path:data|register_file:rf|my_reg:\GEN_REG:7:REG                                                                 ; my_reg               ; work         ;
++----------------------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+----------------------------------------------------------------------------------------------------------------------------------+----------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |IITB_RISC|control_path:control|Q                                                                                                                         ;
++-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+------+------+------+------+------+------+------+------+------+------+------+------+
+; Name  ; Q.S19 ; Q.S18 ; Q.S17 ; Q.S16 ; Q.S15 ; Q.S14 ; Q.S13 ; Q.S12 ; Q.S11 ; Q.S10 ; Q.S9 ; Q.S8 ; Q.S7 ; Q.S6 ; Q.S5 ; Q.S4 ; Q.S3 ; Q.S2 ; Q.S1 ; Q.S0 ; Q.B1 ; Q.B0 ;
++-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+------+------+------+------+------+------+------+------+------+------+------+------+
+; Q.B0  ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ;
+; Q.B1  ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 1    ; 1    ;
+; Q.S0  ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 1    ; 0    ; 1    ;
+; Q.S1  ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 1    ; 0    ; 0    ; 1    ;
+; Q.S2  ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 1    ; 0    ; 0    ; 0    ; 1    ;
+; Q.S3  ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 1    ; 0    ; 0    ; 0    ; 0    ; 1    ;
+; Q.S4  ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0    ; 0    ; 0    ; 0    ; 0    ; 1    ; 0    ; 0    ; 0    ; 0    ; 0    ; 1    ;
+; Q.S5  ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0    ; 0    ; 0    ; 0    ; 1    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 1    ;
+; Q.S6  ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0    ; 0    ; 0    ; 1    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 1    ;
+; Q.S7  ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0    ; 0    ; 1    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 1    ;
+; Q.S8  ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0    ; 1    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 1    ;
+; Q.S9  ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 1    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 1    ;
+; Q.S10 ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 1     ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 1    ;
+; Q.S11 ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 1     ; 0     ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 1    ;
+; Q.S12 ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 1     ; 0     ; 0     ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 1    ;
+; Q.S13 ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 1     ; 0     ; 0     ; 0     ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 1    ;
+; Q.S14 ; 0     ; 0     ; 0     ; 0     ; 0     ; 1     ; 0     ; 0     ; 0     ; 0     ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 1    ;
+; Q.S15 ; 0     ; 0     ; 0     ; 0     ; 1     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 1    ;
+; Q.S16 ; 0     ; 0     ; 0     ; 1     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 1    ;
+; Q.S17 ; 0     ; 0     ; 1     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 1    ;
+; Q.S18 ; 0     ; 1     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 1    ;
+; Q.S19 ; 1     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 0    ; 1    ;
++-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+------+------+------+------+------+------+------+------+------+------+------+------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------+
+; State Machine - |IITB_RISC|data_path:data|bootload:bootload_instance|control_bootload:cp|Q ;
++--------+------+--------+--------+--------+--------+------+---------------------------------+
+; Name   ; Q.S4 ; Q.S3_2 ; Q.S3_1 ; Q.S2_2 ; Q.S2_1 ; Q.S1 ; Q.S0                            ;
++--------+------+--------+--------+--------+--------+------+---------------------------------+
+; Q.S0   ; 0    ; 0      ; 0      ; 0      ; 0      ; 0    ; 0                               ;
+; Q.S1   ; 0    ; 0      ; 0      ; 0      ; 0      ; 1    ; 1                               ;
+; Q.S2_1 ; 0    ; 0      ; 0      ; 0      ; 1      ; 0    ; 1                               ;
+; Q.S2_2 ; 0    ; 0      ; 0      ; 1      ; 0      ; 0    ; 1                               ;
+; Q.S3_1 ; 0    ; 0      ; 1      ; 0      ; 0      ; 0    ; 1                               ;
+; Q.S3_2 ; 0    ; 1      ; 0      ; 0      ; 0      ; 0    ; 1                               ;
+; Q.S4   ; 1    ; 0      ; 0      ; 0      ; 0      ; 0    ; 1                               ;
++--------+------+--------+--------+--------+--------+------+---------------------------------+
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |IITB_RISC|data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|control_path_receive:c|Q ;
++---------------+-------------+-----------+---------------+-----------------------------------------------------------------------------+
+; Name          ; Q.valid_chk ; Q.receive ; Q.receive_chk ; Q.ready                                                                     ;
++---------------+-------------+-----------+---------------+-----------------------------------------------------------------------------+
+; Q.ready       ; 0           ; 0         ; 0             ; 0                                                                           ;
+; Q.receive_chk ; 0           ; 0         ; 1             ; 1                                                                           ;
+; Q.receive     ; 0           ; 1         ; 0             ; 1                                                                           ;
+; Q.valid_chk   ; 1           ; 0         ; 0             ; 1                                                                           ;
++---------------+-------------+-----------+---------------+-----------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                      ;
++------------------------------------------------------------------------------------+--------------------+
+; Register name                                                                      ; Reason for Removal ;
++------------------------------------------------------------------------------------+--------------------+
+; data_path:data|bootload:bootload_instance|data_bootload:dp|my_reg:addr|Dout[8..15] ; Lost fanout        ;
+; Total Number of Removed Registers = 8                                              ;                    ;
++------------------------------------------------------------------------------------+--------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 4434  ;
+; Number of registers using Synchronous Clear  ; 10    ;
+; Number of registers using Synchronous Load   ; 43    ;
+; Number of registers using Asynchronous Clear ; 267   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 4341  ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Inverted Register Statistics                                                                                     ;
++--------------------------------------------------------------------------------------------------------+---------+
+; Inverted Register                                                                                      ; Fan out ;
++--------------------------------------------------------------------------------------------------------+---------+
+; data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|receive2             ; 2       ;
+; data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|clk                  ; 25      ;
+; data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|\clk_divide:count[0] ; 3       ;
+; data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|\clk_divide:count[2] ; 2       ;
+; data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|\clk_divide:count[8] ; 7       ;
+; data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|\clk_divide:count[6] ; 2       ;
+; Total number of inverted registers = 6                                                                 ;         ;
++--------------------------------------------------------------------------------------------------------+---------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                                                         ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                               ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------------+
+; 3:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; Yes        ; |IITB_RISC|data_path:data|my_reg:PC_reg|Dout[0]                                                                                          ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |IITB_RISC|data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|data_path_receive:d|my_reg:cnt2_reg|Dout[2] ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |IITB_RISC|data_path:data|ALU_A[9]                                                                                                       ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |IITB_RISC|control_path:control|nQ.B0                                                                                                    ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |IITB_RISC|control_path:control|nQ                                                                                                       ;
+; 8:1                ; 3 bits    ; 15 LEs        ; 6 LEs                ; 9 LEs                  ; No         ; |IITB_RISC|data_path:data|A3[2]                                                                                                          ;
+; 8:1                ; 16 bits   ; 80 LEs        ; 80 LEs               ; 0 LEs                  ; No         ; |IITB_RISC|data_path:data|register_file:rf|Mux12                                                                                         ;
+; 8:1                ; 16 bits   ; 80 LEs        ; 80 LEs               ; 0 LEs                  ; No         ; |IITB_RISC|data_path:data|register_file:rf|Mux23                                                                                         ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 6 LEs                ; 4 LEs                  ; No         ; |IITB_RISC|data_path:data|ALU_B[0]                                                                                                       ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |IITB_RISC|data_path:data|A_DM[5]                                                                                                        ;
+; 6:1                ; 10 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; No         ; |IITB_RISC|data_path:data|ALU_B                                                                                                          ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |IITB_RISC|data_path:data|ALU_B                                                                                                          ;
+; 9:1                ; 7 bits    ; 42 LEs        ; 21 LEs               ; 21 LEs                 ; No         ; |IITB_RISC|data_path:data|D3[9]                                                                                                          ;
+; 9:1                ; 7 bits    ; 42 LEs        ; 21 LEs               ; 21 LEs                 ; No         ; |IITB_RISC|data_path:data|D3[1]                                                                                                          ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; No         ; |IITB_RISC|data_path:data|D3[7]                                                                                                          ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |IITB_RISC|data_path:data|ls_multiple:pe_block|p_encoder_2:PE|output[2]                                                                  ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; No         ; |IITB_RISC|data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|control_path_receive:c|Selector0            ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 8 LEs                ; 2 LEs                  ; No         ; |IITB_RISC|data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|control_path_receive:c|Selector2            ;
+; 10:1               ; 5 bits    ; 30 LEs        ; 10 LEs               ; 20 LEs                 ; No         ; |IITB_RISC|control_path:control|nQ.S19                                                                                                   ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; No         ; |IITB_RISC|data_path:data|bootload:bootload_instance|control_bootload:cp|nQ.S4                                                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|bootload:bootload_instance|data_bootload:dp|my_reg:addr ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                       ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+; dw             ; 16    ; Signed Integer                                                                             ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|bootload:bootload_instance|data_bootload:dp|my_reg:dat ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                      ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; dw             ; 16    ; Signed Integer                                                                            ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|bootload:bootload_instance|data_bootload:dp|my_reg:count ;
++----------------+-------+---------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                        ;
++----------------+-------+---------------------------------------------------------------------------------------------+
+; dw             ; 8     ; Signed Integer                                                                              ;
++----------------+-------+---------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|data_path_receive:d|my_reg:rx_reg ;
++----------------+-------+-----------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                                                    ;
++----------------+-------+-----------------------------------------------------------------------------------------------------------------------------------------+
+; dw             ; 1     ; Signed Integer                                                                                                                          ;
++----------------+-------+-----------------------------------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|data_path_receive:d|my_reg:data_reg ;
++----------------+-------+-------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                                                      ;
++----------------+-------+-------------------------------------------------------------------------------------------------------------------------------------------+
+; dw             ; 10    ; Signed Integer                                                                                                                            ;
++----------------+-------+-------------------------------------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|data_path_receive:d|my_reg:cnt1_reg ;
++----------------+-------+-------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                                                      ;
++----------------+-------+-------------------------------------------------------------------------------------------------------------------------------------------+
+; dw             ; 4     ; Signed Integer                                                                                                                            ;
++----------------+-------+-------------------------------------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|data_path_receive:d|my_reg:cnt2_reg ;
++----------------+-------+-------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                                                      ;
++----------------+-------+-------------------------------------------------------------------------------------------------------------------------------------------+
+; dw             ; 3     ; Signed Integer                                                                                                                            ;
++----------------+-------+-------------------------------------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|my_reg:instruction_register ;
++----------------+-------+----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                           ;
++----------------+-------+----------------------------------------------------------------+
+; dw             ; 16    ; Signed Integer                                                 ;
++----------------+-------+----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|register_file:rf|my_reg:\GEN_REG:0:REG ;
++----------------+-------+---------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                      ;
++----------------+-------+---------------------------------------------------------------------------+
+; dw             ; 16    ; Signed Integer                                                            ;
++----------------+-------+---------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|register_file:rf|my_reg:\GEN_REG:1:REG ;
++----------------+-------+---------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                      ;
++----------------+-------+---------------------------------------------------------------------------+
+; dw             ; 16    ; Signed Integer                                                            ;
++----------------+-------+---------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|register_file:rf|my_reg:\GEN_REG:2:REG ;
++----------------+-------+---------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                      ;
++----------------+-------+---------------------------------------------------------------------------+
+; dw             ; 16    ; Signed Integer                                                            ;
++----------------+-------+---------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|register_file:rf|my_reg:\GEN_REG:3:REG ;
++----------------+-------+---------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                      ;
++----------------+-------+---------------------------------------------------------------------------+
+; dw             ; 16    ; Signed Integer                                                            ;
++----------------+-------+---------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|register_file:rf|my_reg:\GEN_REG:4:REG ;
++----------------+-------+---------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                      ;
++----------------+-------+---------------------------------------------------------------------------+
+; dw             ; 16    ; Signed Integer                                                            ;
++----------------+-------+---------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|register_file:rf|my_reg:\GEN_REG:5:REG ;
++----------------+-------+---------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                      ;
++----------------+-------+---------------------------------------------------------------------------+
+; dw             ; 16    ; Signed Integer                                                            ;
++----------------+-------+---------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|register_file:rf|my_reg:\GEN_REG:6:REG ;
++----------------+-------+---------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                      ;
++----------------+-------+---------------------------------------------------------------------------+
+; dw             ; 16    ; Signed Integer                                                            ;
++----------------+-------+---------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|register_file:rf|my_reg:\GEN_REG:7:REG ;
++----------------+-------+---------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                      ;
++----------------+-------+---------------------------------------------------------------------------+
+; dw             ; 16    ; Signed Integer                                                            ;
++----------------+-------+---------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|ls_multiple:pe_block|my_reg:T ;
++----------------+-------+------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                             ;
++----------------+-------+------------------------------------------------------------------+
+; dw             ; 8     ; Signed Integer                                                   ;
++----------------+-------+------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|alu:alu_instance ;
++----------------+-------+-----------------------------------------------------+
+; Parameter Name ; Value ; Type                                                ;
++----------------+-------+-----------------------------------------------------+
+; wlen           ; 16    ; Signed Integer                                      ;
++----------------+-------+-----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|alu:alu_instance|adder:add1 ;
++----------------+-------+----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                           ;
++----------------+-------+----------------------------------------------------------------+
+; wlen           ; 16    ; Signed Integer                                                 ;
+; glen           ; 4     ; Signed Integer                                                 ;
++----------------+-------+----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|alu:alu_instance|adder:add1|carry_generate:\car_l:1:CARRYX ;
++----------------+-------+-----------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                          ;
++----------------+-------+-----------------------------------------------------------------------------------------------+
+; glen           ; 4     ; Signed Integer                                                                                ;
++----------------+-------+-----------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|alu:alu_instance|adder:add1|carry_generate:\car_l:2:CARRYX ;
++----------------+-------+-----------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                          ;
++----------------+-------+-----------------------------------------------------------------------------------------------+
+; glen           ; 4     ; Signed Integer                                                                                ;
++----------------+-------+-----------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|alu:alu_instance|adder:add1|carry_generate:\car_l:3:CARRYX ;
++----------------+-------+-----------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                          ;
++----------------+-------+-----------------------------------------------------------------------------------------------+
+; glen           ; 4     ; Signed Integer                                                                                ;
++----------------+-------+-----------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|alu:alu_instance|adder:add1|carry_generate:\car_l:4:CARRYX ;
++----------------+-------+-----------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                          ;
++----------------+-------+-----------------------------------------------------------------------------------------------+
+; glen           ; 4     ; Signed Integer                                                                                ;
++----------------+-------+-----------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|ram:mem ;
++----------------+-------+--------------------------------------------+
+; Parameter Name ; Value ; Type                                       ;
++----------------+-------+--------------------------------------------+
+; DATA_WIDTH     ; 16    ; Signed Integer                             ;
+; ADDR_WIDTH     ; 8     ; Signed Integer                             ;
++----------------+-------+--------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|my_reg:T1_Reg ;
++----------------+-------+--------------------------------------------------+
+; Parameter Name ; Value ; Type                                             ;
++----------------+-------+--------------------------------------------------+
+; dw             ; 16    ; Signed Integer                                   ;
++----------------+-------+--------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|my_reg:T2_reg ;
++----------------+-------+--------------------------------------------------+
+; Parameter Name ; Value ; Type                                             ;
++----------------+-------+--------------------------------------------------+
+; dw             ; 16    ; Signed Integer                                   ;
++----------------+-------+--------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|my_reg:Carry_CCR ;
++----------------+-------+-----------------------------------------------------+
+; Parameter Name ; Value ; Type                                                ;
++----------------+-------+-----------------------------------------------------+
+; dw             ; 1     ; Signed Integer                                      ;
++----------------+-------+-----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|my_reg:Zero_CCR ;
++----------------+-------+----------------------------------------------------+
+; Parameter Name ; Value ; Type                                               ;
++----------------+-------+----------------------------------------------------+
+; dw             ; 1     ; Signed Integer                                     ;
++----------------+-------+----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|my_reg:Overflow_CCR ;
++----------------+-------+--------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                   ;
++----------------+-------+--------------------------------------------------------+
+; dw             ; 1     ; Signed Integer                                         ;
++----------------+-------+--------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|my_reg:E1_reg ;
++----------------+-------+--------------------------------------------------+
+; Parameter Name ; Value ; Type                                             ;
++----------------+-------+--------------------------------------------------+
+; dw             ; 16    ; Signed Integer                                   ;
++----------------+-------+--------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|my_reg:E2_reg ;
++----------------+-------+--------------------------------------------------+
+; Parameter Name ; Value ; Type                                             ;
++----------------+-------+--------------------------------------------------+
+; dw             ; 16    ; Signed Integer                                   ;
++----------------+-------+--------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|my_reg:PC_reg ;
++----------------+-------+--------------------------------------------------+
+; Parameter Name ; Value ; Type                                             ;
++----------------+-------+--------------------------------------------------+
+; dw             ; 16    ; Signed Integer                                   ;
++----------------+-------+--------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: data_path:data|my_reg:B_flop ;
++----------------+-------+--------------------------------------------------+
+; Parameter Name ; Value ; Type                                             ;
++----------------+-------+--------------------------------------------------+
+; dw             ; 1     ; Signed Integer                                   ;
++----------------+-------+--------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------+
+; Port Connectivity Checks: "data_path:data|my_reg:E2_reg" ;
++------+-------+----------+--------------------------------+
+; Port ; Type  ; Severity ; Details                        ;
++------+-------+----------+--------------------------------+
+; ena  ; Input ; Info     ; Stuck at VCC                   ;
++------+-------+----------+--------------------------------+
+
+
++----------------------------------------------------------+
+; Port Connectivity Checks: "data_path:data|my_reg:E1_reg" ;
++------+-------+----------+--------------------------------+
+; Port ; Type  ; Severity ; Details                        ;
++------+-------+----------+--------------------------------+
+; ena  ; Input ; Info     ; Stuck at VCC                   ;
++------+-------+----------+--------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "data_path:data|alu:alu_instance|adder:add1"                                                ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; cout[13..0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------+
+; Port Connectivity Checks: "data_path:data|alu:alu_instance" ;
++------+-------+----------+-----------------------------------+
+; Port ; Type  ; Severity ; Details                           ;
++------+-------+----------+-----------------------------------+
+; cin  ; Input ; Info     ; Stuck at GND                      ;
++------+-------+----------+-----------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "data_path:data|ls_multiple:pe_block"                                                 ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; Port  ; Type   ; Severity ; Details                                                                             ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; valid ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|data_path_receive:d|my_reg:rx_reg" ;
++------+-------+----------+-----------------------------------------------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                                                               ;
++------+-------+----------+-----------------------------------------------------------------------------------------------------------------------+
+; ena  ; Input ; Info     ; Stuck at VCC                                                                                                          ;
++------+-------+----------+-----------------------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception"                                                           ;
++-------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port  ; Type  ; Severity ; Details                                                                                                                                      ;
++-------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; reset ; Input ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
++-------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "data_path:data|bootload:bootload_instance"                                                    ;
++----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port           ; Type   ; Severity ; Details                                                                             ;
++----------------+--------+----------+-------------------------------------------------------------------------------------+
+; address[15..8] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+    Info: Processing started: Sat May 07 18:17:41 2022
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off IITB_RISC -c IITB_RISC
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 8 of the 8 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file p_encoder_2.vhd
+    Info (12022): Found design unit 1: p_encoder_2-behave_ov File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/p_encoder_2.vhd Line: 14
+    Info (12023): Found entity 1: p_encoder_2 File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/p_encoder_2.vhd Line: 6
+Info (12021): Found 6 design units, including 3 entities, in source file uart_receive.vhdl
+    Info (12022): Found design unit 1: uart_receive-receive File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/uart_receive.vhdl Line: 13
+    Info (12022): Found design unit 2: control_path_receive-control File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/uart_receive.vhdl Line: 88
+    Info (12022): Found design unit 3: data_path_receive-data File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/uart_receive.vhdl Line: 162
+    Info (12023): Found entity 1: uart_receive File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/uart_receive.vhdl Line: 5
+    Info (12023): Found entity 2: control_path_receive File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/uart_receive.vhdl Line: 80
+    Info (12023): Found entity 3: data_path_receive File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/uart_receive.vhdl Line: 153
+Info (12021): Found 2 design units, including 1 entities, in source file test_final.vhdl
+    Info (12022): Found design unit 1: test_final-test File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/test_final.vhdl Line: 10
+    Info (12023): Found entity 1: test_final File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/test_final.vhdl Line: 7
+Info (12021): Found 2 design units, including 1 entities, in source file sub16.vhdl
+    Info (12022): Found design unit 1: Sub16-myOwn File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/Sub16.vhdl Line: 16
+    Info (12023): Found entity 1: Sub16 File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/Sub16.vhdl Line: 9
+Info (12021): Found 2 design units, including 1 entities, in source file sign_extend_9_16.vhdl
+    Info (12022): Found design unit 1: sign_extend_9_16-sign_extend_9_16_arch File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/sign_extend_9_16.vhdl Line: 9
+    Info (12023): Found entity 1: sign_extend_9_16 File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/sign_extend_9_16.vhdl Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file sign_extend_6_16.vhdl
+    Info (12022): Found design unit 1: sign_extend_6_16-sign_extend_6_16_arch File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/sign_extend_6_16.vhdl Line: 9
+    Info (12023): Found entity 1: sign_extend_6_16 File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/sign_extend_6_16.vhdl Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file register_file.vhdl
+    Info (12022): Found design unit 1: register_file-trial File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/register_file.vhdl Line: 17
+    Info (12023): Found entity 1: register_file File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/register_file.vhdl Line: 9
+Info (12021): Found 2 design units, including 1 entities, in source file ram.vhdl
+    Info (12022): Found design unit 1: ram-rtl File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/ram.vhdl Line: 25
+    Info (12023): Found entity 1: ram File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/ram.vhdl Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file p_encoder.vhdl
+    Info (12022): Found design unit 1: p_encoder-behave_ov File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/p_encoder.vhdl Line: 14
+    Info (12023): Found entity 1: p_encoder File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/p_encoder.vhdl Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file my_reg.vhdl
+    Info (12022): Found design unit 1: my_reg-myOwn File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/my_reg.vhdl Line: 14
+    Info (12023): Found entity 1: my_reg File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/my_reg.vhdl Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file mux8.vhdl
+    Info (12022): Found design unit 1: mux8-behave File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/mux8.vhdl Line: 14
+    Info (12023): Found entity 1: mux8 File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/mux8.vhdl Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file mux4.vhdl
+    Info (12022): Found design unit 1: mux4-behave File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/mux4.vhdl Line: 13
+    Info (12023): Found entity 1: mux4 File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/mux4.vhdl Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file ls_multiple.vhdl
+    Info (12022): Found design unit 1: ls_multiple-basic File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/ls_multiple.vhdl Line: 17
+    Info (12023): Found entity 1: ls_multiple File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/ls_multiple.vhdl Line: 9
+Info (12021): Found 2 design units, including 1 entities, in source file iitb_risc.vhdl
+    Info (12022): Found design unit 1: IITB_RISC-ov File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/IITB_RISC.vhdl Line: 15
+    Info (12023): Found entity 1: IITB_RISC File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/IITB_RISC.vhdl Line: 9
+Info (12021): Found 2 design units, including 1 entities, in source file greater_than.vhdl
+    Info (12022): Found design unit 1: greater_than-Serial File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/greater_than.vhdl Line: 13
+    Info (12023): Found entity 1: greater_than File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/greater_than.vhdl Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file fulladder.vhdl
+    Info (12022): Found design unit 1: fulladder-myOwn File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/fulladder.vhdl Line: 11
+    Info (12023): Found entity 1: fulladder File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/fulladder.vhdl Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file full_adder.vhdl
+    Info (12022): Found design unit 1: full_adder-basic File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/full_adder.vhdl Line: 11
+    Info (12023): Found entity 1: full_adder File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/full_adder.vhdl Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file equal_to.vhdl
+    Info (12022): Found design unit 1: equal_to-myOwn File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/equal_to.vhdl Line: 13
+    Info (12023): Found entity 1: equal_to File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/equal_to.vhdl Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file decr4.vhdl
+    Info (12022): Found design unit 1: decr4-myOwn File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/decr4.vhdl Line: 11
+    Info (12023): Found entity 1: decr4 File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/decr4.vhdl Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file data_path.vhdl
+    Info (12022): Found design unit 1: data_path-rtl File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/data_path.vhdl Line: 25
+    Info (12023): Found entity 1: data_path File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/data_path.vhdl Line: 13
+Info (12021): Found 2 design units, including 1 entities, in source file data_bootload.vhdl
+    Info (12022): Found design unit 1: data_bootload-data_bootload_arch File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/data_bootload.vhdl Line: 18
+    Info (12023): Found entity 1: data_bootload File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/data_bootload.vhdl Line: 8
+Info (12021): Found 2 design units, including 1 entities, in source file control_path.vhdl
+    Info (12022): Found design unit 1: control_path-fsm File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/control_path.vhdl Line: 96
+    Info (12023): Found entity 1: control_path File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/control_path.vhdl Line: 85
+Info (12021): Found 2 design units, including 1 entities, in source file control_bootload.vhdl
+    Info (12022): Found design unit 1: control_bootload-control File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/control_bootload.vhdl Line: 20
+    Info (12023): Found entity 1: control_bootload File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/control_bootload.vhdl Line: 11
+Info (12021): Found 2 design units, including 1 entities, in source file clk_divider.vhdl
+    Info (12022): Found design unit 1: clk_divider-clk_divider_arch File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/clk_divider.vhdl Line: 15
+    Info (12023): Found entity 1: clk_divider File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/clk_divider.vhdl Line: 8
+Info (12021): Found 2 design units, including 1 entities, in source file carry_generate.vhdl
+    Info (12022): Found design unit 1: carry_generate-carry_generate_arch File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/carry_generate.vhdl Line: 15
+    Info (12023): Found entity 1: carry_generate File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/carry_generate.vhdl Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file bootload.vhdl
+    Info (12022): Found design unit 1: bootload-bootload_arch File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/bootload.vhdl Line: 14
+    Info (12023): Found entity 1: bootload File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/bootload.vhdl Line: 6
+Info (12021): Found 1 design units, including 0 entities, in source file basic.vhdl
+    Info (12022): Found design unit 1: basic File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/basic.vhdl Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file alu.vhdl
+    Info (12022): Found design unit 1: alu-behave File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/alu.vhdl Line: 19
+    Info (12023): Found entity 1: alu File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/alu.vhdl Line: 9
+Info (12021): Found 2 design units, including 1 entities, in source file adder8bit.vhdl
+    Info (12022): Found design unit 1: adder8Bit-adder8Bit_arc File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/adder8Bit.vhdl Line: 17
+    Info (12023): Found entity 1: adder8Bit File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/adder8Bit.vhdl Line: 8
+Info (12021): Found 2 design units, including 1 entities, in source file adder2bit.vhdl
+    Info (12022): Found design unit 1: adder2Bit-adder2Bit_arc File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/adder2Bit.vhdl Line: 15
+    Info (12023): Found entity 1: adder2Bit File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/adder2Bit.vhdl Line: 8
+Info (12021): Found 2 design units, including 1 entities, in source file adder.vhdl
+    Info (12022): Found design unit 1: adder-adder_arc File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/adder.vhdl Line: 23
+    Info (12023): Found entity 1: adder File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/adder.vhdl Line: 11
+Info (12021): Found 1 design units, including 0 entities, in source file add.vhdl
+    Info (12022): Found design unit 1: add File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/add.vhdl Line: 8
+Info (12127): Elaborating entity "IITB_RISC" for the top level hierarchy
+Info (12128): Elaborating entity "data_path" for hierarchy "data_path:data" File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/IITB_RISC.vhdl Line: 48
+Info (12128): Elaborating entity "bootload" for hierarchy "data_path:data|bootload:bootload_instance" File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/data_path.vhdl Line: 98
+Info (12128): Elaborating entity "data_bootload" for hierarchy "data_path:data|bootload:bootload_instance|data_bootload:dp" File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/bootload.vhdl Line: 37
+Info (12128): Elaborating entity "my_reg" for hierarchy "data_path:data|bootload:bootload_instance|data_bootload:dp|my_reg:addr" File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/data_bootload.vhdl Line: 34
+Info (12128): Elaborating entity "my_reg" for hierarchy "data_path:data|bootload:bootload_instance|data_bootload:dp|my_reg:count" File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/data_bootload.vhdl Line: 50
+Info (12128): Elaborating entity "uart_receive" for hierarchy "data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception" File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/data_bootload.vhdl Line: 67
+Info (12128): Elaborating entity "data_path_receive" for hierarchy "data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|data_path_receive:d" File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/uart_receive.vhdl Line: 61
+Info (12128): Elaborating entity "my_reg" for hierarchy "data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|data_path_receive:d|my_reg:rx_reg" File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/uart_receive.vhdl Line: 170
+Info (12128): Elaborating entity "my_reg" for hierarchy "data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|data_path_receive:d|my_reg:data_reg" File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/uart_receive.vhdl Line: 179
+Info (12128): Elaborating entity "my_reg" for hierarchy "data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|data_path_receive:d|my_reg:cnt1_reg" File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/uart_receive.vhdl Line: 189
+Info (12128): Elaborating entity "my_reg" for hierarchy "data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|data_path_receive:d|my_reg:cnt2_reg" File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/uart_receive.vhdl Line: 199
+Info (12128): Elaborating entity "control_path_receive" for hierarchy "data_path:data|bootload:bootload_instance|data_bootload:dp|uart_receive:reception|control_path_receive:c" File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/uart_receive.vhdl Line: 67
+Warning (10492): VHDL Process Statement warning at uart_receive.vhdl(106): signal "reset" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/uart_receive.vhdl Line: 106
+Info (12128): Elaborating entity "control_bootload" for hierarchy "data_path:data|bootload:bootload_instance|control_bootload:cp" File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/bootload.vhdl Line: 43
+Info (12128): Elaborating entity "register_file" for hierarchy "data_path:data|register_file:rf" File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/data_path.vhdl Line: 111
+Info (12128): Elaborating entity "ls_multiple" for hierarchy "data_path:data|ls_multiple:pe_block" File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/data_path.vhdl Line: 116
+Info (12128): Elaborating entity "p_encoder_2" for hierarchy "data_path:data|ls_multiple:pe_block|p_encoder_2:PE" File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/ls_multiple.vhdl Line: 33
+Info (12128): Elaborating entity "sign_extend_6_16" for hierarchy "data_path:data|sign_extend_6_16:sign_extend_1" File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/data_path.vhdl Line: 121
+Info (12128): Elaborating entity "sign_extend_9_16" for hierarchy "data_path:data|sign_extend_9_16:sign_extend_2" File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/data_path.vhdl Line: 126
+Info (12128): Elaborating entity "alu" for hierarchy "data_path:data|alu:alu_instance" File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/data_path.vhdl Line: 131
+Info (12128): Elaborating entity "adder" for hierarchy "data_path:data|alu:alu_instance|adder:add1" File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/alu.vhdl Line: 23
+Info (12128): Elaborating entity "full_adder" for hierarchy "data_path:data|alu:alu_instance|adder:add1|full_adder:\add_l:0:ADDX" File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/adder.vhdl Line: 30
+Info (12128): Elaborating entity "carry_generate" for hierarchy "data_path:data|alu:alu_instance|adder:add1|carry_generate:\car_l:1:CARRYX" File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/adder.vhdl Line: 39
+Info (12128): Elaborating entity "ram" for hierarchy "data_path:data|ram:mem" File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/data_path.vhdl Line: 136
+Warning (10492): VHDL Process Statement warning at ram.vhdl(44): signal "address" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/ram.vhdl Line: 44
+Info (12128): Elaborating entity "control_path" for hierarchy "control_path:control" File: C:/Sri Harsha/IITB/Spring 2022/CS230_CS232-Digital Logic Design and Computer Architecture/New folder/200050083-200050097-200050131-200050138 (1)/project3/IITB_RISC.vhdl Line: 52
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (17049): 8 registers lost all their fanouts during netlist optimizations.
+Info (21057): Implemented 8096 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 4 input pins
+    Info (21059): Implemented 16 output pins
+    Info (21061): Implemented 8076 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 4 warnings
+    Info: Peak virtual memory: 4771 megabytes
+    Info: Processing ended: Sat May 07 18:18:00 2022
+    Info: Elapsed time: 00:00:19
+    Info: Total CPU time (on all processors): 00:00:42
+
+

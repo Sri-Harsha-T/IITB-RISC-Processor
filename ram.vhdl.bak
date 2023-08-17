@@ -1,0 +1,118 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+--LIBRARY altera_mf;
+--USE altera_mf.altera_mf_components.all;
+
+--LIBRARY maxv;
+--use maxv.all;
+
+--ENTITY ram IS
+--	PORT
+--	(
+--		aclr		: IN STD_LOGIC  := '0';
+--		address		: IN STD_LOGIC_VECTOR (14 DOWNTO 0);
+--		clock		: IN STD_LOGIC  := '1';
+--		data		: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
+--		wren		: IN STD_LOGIC ;
+--		q		: OUT STD_LOGIC_VECTOR (15 DOWNTO 0)
+--	);
+--END ram;
+
+
+--ARCHITECTURE SYN OF ram IS
+
+	--SIGNAL sub_wire0	: STD_LOGIC_VECTOR (15 DOWNTO 0);
+
+--BEGIN
+--	q    <= sub_wire0(15 DOWNTO 0);
+
+--	altsyncram_component : altsyncram
+	--GENERIC MAP (
+		--clock_enable_input_a => "BYPASS",
+		--clock_enable_output_a => "BYPASS",
+		--intended_device_family => "Cyclone IV E",
+		--intended_device_family => "MAX II",
+		--lpm_hint => "ENABLE_RUNTIME_MOD=NO",
+		--lpm_type => "altsyncram",
+		--numwords_a => 128,
+		--operation_mode => "SINGLE_PORT",
+		--outdata_aclr_a => "CLEAR0",
+		--outdata_reg_a => "UNREGISTERED",
+		--power_up_uninitialized => "FALSE",
+		--read_during_write_mode_port_a => "DONT_CARE",
+		--widthad_a => 15,
+		--width_a => 16,
+		--width_byteena_a => 1,
+		--address_aclr_a => "CLEAR0",
+		--indata_aclr_a => "CLEAR0",
+		--wrcontrol_aclr_a => "CLEAR0"
+		--outdata_Aclr_a => "NONE"
+	--)
+	--PORT MAP (
+		--aclr0 => aclr,
+		--address_a => address,
+		--clock0 => clock,
+		--data_a => data,
+		--wren_a => wren,
+		--q_a => sub_wire0
+	--);
+
+--END SYN;
+
+
+-- Quartus Prime VHDL Template
+-- Single port RAM with single read/write address 
+
+--library ieee;
+--use ieee.std_logic_1164.all;
+
+entity ram is
+
+	generic 
+	(
+		dw : natural := 16;
+		ADDR_WIDTH : natural := 15
+	);
+
+	port 
+	(
+		clk		: in std_logic;
+		addr	: in natural range 0 to 2**ADDR_WIDTH - 1;
+		data	: in std_logic_vector((dw-1) downto 0);
+		we		: in std_logic := '1';
+		q		: out std_logic_vector((dw -1) downto 0)
+	);
+
+end entity;
+
+architecture rtl of single_port_ram is
+
+	-- Build a 2-D array type for the RAM
+	subtype word_t is std_logic_vector((dw-1) downto 0);
+	type memory_t is array(2**ADDR_WIDTH-1 downto 0) of word_t;
+
+	-- Declare the RAM signal.	
+	signal ram : memory_t;
+
+	-- Register to hold the address 
+	signal addr_reg : natural range 0 to 2**ADDR_WIDTH-1;
+
+begin
+
+	process(clk)
+	begin
+	if(rising_edge(clk)) then
+		if(we = '1') then
+			ram(addr) <= data;
+		end if;
+
+		-- Register the address for reading
+		addr_reg <= addr;
+	end if;
+	end process;
+
+	q <= ram(addr_reg);
+
+end rtl;
+
